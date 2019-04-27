@@ -39,4 +39,8 @@
             <formatter type="plain" usefile="false"/>
         </junit>
     </target>
+
+    <target name="deploy" depends="make">
+
+    </target>
 </project>
