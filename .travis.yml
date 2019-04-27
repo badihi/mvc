@@ -5,3 +5,4 @@ script:
   - pwd
   - ls
   - which scp
+  - ant lint
