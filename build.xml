@@ -101,6 +101,14 @@
   <path id="library.junit-4.12.classpath">
     <pathelement location="${basedir}/lib/junit-4.12.jar"/>
   </path>
+
+  <path id = "classpath.base"/>
+  <path id = "classpath.test">
+    <pathelement location = "lib/junit-4.12.jar" />
+    <pathelement location = "test" />
+    <pathelement location = "src" />
+    <path refid = "classpath.base" />
+  </path>
   
   <!-- Modules -->
   
@@ -115,4 +123,12 @@
   <target name="build.modules" depends="init, clean, compile.module.mvc" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
+
+  <target name="test">
+    <junit>
+      <classpath refid = "classpath.test" />
+      <formatter type = "brief" usefile = "false" />
+      <test name = "TestMessageUtil" />
+    </junit>
+  </target>
 </project>
