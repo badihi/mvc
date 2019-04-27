@@ -1,3 +1,5 @@
+package selab.mvc.tests;
+
 import org.junit.Assert;
 import org.junit.Test;
 
