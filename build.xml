@@ -80,4 +80,18 @@
   <target name="build.modules" depends="init, clean, compile.module.mvc" description="build all modules"/>
   
   <target name="all" depends="build.modules" description="build all"/>
+
+  <target name="test">
+    <junit failureproperty="junit.failure">
+      <classpath>
+        <pathelement location = "lib/junit-4.12.jar" />
+        <pathelement location = "lib/hamcrest-all-1.3.jar" />
+        <pathelement location = "${mvc.output.dir}" />
+        <pathelement location = "${mvc.testoutput.dir}" />
+      </classpath>
+      <formatter type = "brief" usefile = "false" />
+      <test name = "selab.mvc.tests.TestTest" />
+    </junit>
+    <fail if="junit.failure" message="Unit test failed. Please see the report" />
+  </target>
 </project>
