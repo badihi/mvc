@@ -1,4 +1,6 @@
 language: java
 script:
-  - ant build.modules
   - ant test
+  - ant make
+  - pwd
+  - ls

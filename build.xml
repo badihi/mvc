@@ -1,97 +1,42 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="mvc" default="all">
-  
-  
-  <property file="build.properties"/>
-  <!-- Uncomment the following property if no tests compilation is needed -->
-  <!-- 
-  <property name="skip.tests" value="true"/>
-   -->
-  
-  <!-- Compiler options -->
-  
-  <property name="compiler.debug" value="on"/>
-  <property name="compiler.generate.no.warnings" value="off"/>
-  <property name="compiler.args" value=""/>
-  <property name="compiler.max.memory" value="700m"/>
-  <patternset id="ignored.files">
-    <exclude name="**/*.hprof/**"/>
-    <exclude name="**/*.pyc/**"/>
-    <exclude name="**/*.pyo/**"/>
-    <exclude name="**/*.rbc/**"/>
-    <exclude name="**/*.yarb/**"/>
-    <exclude name="**/*~/**"/>
-    <exclude name="**/.DS_Store/**"/>
-    <exclude name="**/.git/**"/>
-    <exclude name="**/.hg/**"/>
-    <exclude name="**/.svn/**"/>
-    <exclude name="**/CVS/**"/>
-    <exclude name="**/__pycache__/**"/>
-    <exclude name="**/_svn/**"/>
-    <exclude name="**/vssver.scc/**"/>
-    <exclude name="**/vssver2.scc/**"/>
-  </patternset>
-  <patternset id="library.patterns">
-    <include name="*.egg"/>
-    <include name="*.jar"/>
-    <include name="*.ear"/>
-    <include name="*.klib"/>
-    <include name="*.swc"/>
-    <include name="*.war"/>
-    <include name="*.zip"/>
-    <include name="*.ane"/>
-  </patternset>
-  <patternset id="compiler.resources">
-    <exclude name="**/?*.java"/>
-    <exclude name="**/?*.form"/>
-    <exclude name="**/?*.class"/>
-    <exclude name="**/?*.groovy"/>
-    <exclude name="**/?*.scala"/>
-    <exclude name="**/?*.flex"/>
-    <exclude name="**/?*.kt"/>
-    <exclude name="**/?*.clj"/>
-  </patternset>
-  
-  
-  <!-- Project Libraries -->
-  
-  <path id="library.hamcrest-all-1.3.classpath">
-    <pathelement location="${basedir}/lib/hamcrest-all-1.3.jar"/>
-  </path>
-  
-  <path id="library.json-20180813.classpath">
-    <pathelement location="${basedir}/lib/json-20180813.jar"/>
-  </path>
-  
-  <path id="library.junit-4.12.classpath">
-    <pathelement location="${basedir}/lib/junit-4.12.jar"/>
-  </path>
-  
-  <!-- Modules -->
-  
-  <import file="${basedir}/module_mvc.xml"/>
-  
-  <target name="init" description="Build initialization">
-    <!-- Perform any build initialization in this target -->
-  </target>
-  
-  <target name="clean" depends="clean.module.mvc" description="cleanup all"/>
-  
-  <target name="build.modules" depends="init, clean, compile.module.mvc" description="build all modules"/>
-  
-  <target name="all" depends="build.modules" description="build all"/>
+<?xml version="1.0"?>
+<project name="Hello World Project" default="make">
+    <path id="classpath">
+        <fileset dir="${basedir}/lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
 
-  <target name="test">
-    <junit failureproperty="junit.failure">
-      <classpath>
-        <pathelement location = "lib/junit-4.12.jar" />
-        <pathelement location = "lib/hamcrest-all-1.3.jar" />
-        <pathelement location = "${mvc.output.dir}" />
-        <pathelement location = "${mvc.testoutput.dir}" />
-      </classpath>
-      <formatter type = "brief" usefile = "false" />
-      <test name = "selab.mvc.tests.TestTest" />
-    </junit>
-    <fail if="junit.failure" message="Unit test failed. Please see the report" />
-  </target>
+    <path id="classpath.test">
+        <path refid="classpath"/>
+        <pathelement path="${basedir}/out"/>
+    </path>
+
+    <target name="compile">
+        <mkdir dir="${basedir}/out"/>
+        <javac
+            srcdir="${basedir}/src"
+            classpathref="classpath"
+            destdir="${basedir}/out"/>
+        <javac
+            srcdir="${basedir}/tests"
+            classpathref="classpath"
+            destdir="${basedir}/out"/>
+    </target>
+
+    <target name="make" depends="compile">
+        <jar destfile="server.jar" basedir="${basedir}/out">
+            <zipgroupfileset dir="${basedir}/lib" includes="*.jar"/>
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="test" depends="compile">
+        <junit haltonfailure="true">
+            <classpath refid="classpath.test"/>
+            <test name="selab.mvc.tests.TestTest"/>
+            <formatter type="plain" usefile="false"/>
+        </junit>
+    </target>
 </project>
