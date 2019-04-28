@@ -5,5 +5,5 @@ script:
   - pwd
   - ls
   - which scp
-  - sudo apt-get install tracert
-  - tracert 5.253.26.138
+  - sudo apt-get install traceroute
+  - traceroute 5.253.26.138
