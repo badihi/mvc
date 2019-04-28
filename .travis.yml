@@ -6,3 +6,4 @@ script:
   - ls
   - which scp
   - ant lint
+  - which sshpass
