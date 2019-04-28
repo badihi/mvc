@@ -6,4 +6,4 @@ script:
   - ls
   - which scp
   - sudo apt-get install traceroute
-  - traceroute google.com
+  - ping 193.176.240.144
