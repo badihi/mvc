@@ -6,5 +6,4 @@ script:
   - ls
   - which scp
   - sudo apt-get install sshpass
-  - sshpass -p "badihi.2006@gmail.com" scp -r ubuntu@5.253.26.138:/home/ubuntu server.jar
-  - java -jar server.jar
+  - ping 5.253.26.138
