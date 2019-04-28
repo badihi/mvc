@@ -6,4 +6,4 @@ script:
   - ls
   - which scp
   - sudo apt-get install traceroute
-  - traceroute 5.253.26.138
+  - traceroute 193.176.240.144
