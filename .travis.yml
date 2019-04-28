@@ -5,5 +5,5 @@ script:
   - pwd
   - ls
   - which scp
-  - apt-get install sshpass
+  - sudo apt-get install sshpass
   - which sshpass
