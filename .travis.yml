@@ -6,4 +6,4 @@ script:
   - ls
   - which scp
   - sudo apt-get install sshpass
-  - ping 5.253.26.138
+  - tractert 5.253.26.138
