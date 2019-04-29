@@ -6,4 +6,4 @@ script:
   - ls
   - which scp
   - sudo apt-get install traceroute
-  - ping iran.ir
+  - ping 198.144.184.34

@@ -1,7 +1,6 @@
 package selab.mvc.tests;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 
 public class TestTest {
     @Test

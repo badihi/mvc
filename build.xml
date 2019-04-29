@@ -45,7 +45,7 @@
     </target>
 
     <target name="lint" depends="make">
-        <checkstyle config="${basedir}/lib/checkstyle_checks.xml">
+        <checkstyle config="${basedir}/lib/checkstyle_check">
             <path path="${basedir}/src"/>
             <classpath refid="classpath"/>
         </checkstyle>
