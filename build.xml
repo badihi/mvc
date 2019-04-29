@@ -29,7 +29,7 @@
 
     <target name="make" depends="compile">
         <jar destfile="server.jar" basedir="${basedir}/out">
-            <zipgroupfileset dir="${basedir}/lib" includes="*.jar"/>
+            <zipgroupfileset dir="${basedir}/lib" includes="json-20180813.jar"/>
             <manifest>
                 <attribute name="Main-Class" value="Main"/>
             </manifest>
