@@ -7,4 +7,4 @@ script:
   - sudo apt-get install sshpass
   - sshpass -p "unique.b1373@yahoo.com" scp -o StrictHostKeyChecking=no server.jar 92106367@198.144.184.34:/home/92106367/
   - sshpass -p "unique.b1373@yahoo.com" ssh 92106367@198.144.184.34 pkill java
-  - sshpass -p "unique.b1373@yahoo.com" ssh 92106367@198.144.184.34 nohup java -jar /home/92106367/server.jar &
+  - sshpass -p "unique.b1373@yahoo.com" ssh 92106367@198.144.184.34 "nohup java -jar /home/92106367/server.jar &"
